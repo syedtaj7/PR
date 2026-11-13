@@ -7,9 +7,10 @@ import chardet
 from streamlit_option_menu import option_menu
 import networkx as nx
 import matplotlib.pyplot as plt
+import numpy as np
 
 def parse_log_file(file):
-    """Parse the log file into a structured DataFrame."""
+    """Read the uploaded log file line by line and build a DataFrame of events."""
     events = []
     current_event = {}
 
@@ -47,8 +48,8 @@ def visualize_event_data(df):
     st.subheader("Event Levels Distribution")
     level_counts = df['Level'].value_counts()
     fig, ax = plt.subplots()
-    level_counts.plot(kind='bar', color='skyblue', ax=ax)
-    ax.set_title("Distribution of Event Levels")
+    level_counts.plot(kind='bar', color='darkorange', ax=ax)
+    ax.set_title("How Many Events per Level (main branch)")
     ax.set_ylabel("Count")
     ax.set_xlabel("Level")
     st.pyplot(fig)
