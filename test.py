@@ -7,9 +7,10 @@ import chardet
 from streamlit_option_menu import option_menu
 import networkx as nx
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def parse_log_file(file):
-    """Parse the log file into a structured DataFrame."""
+    """Parse a Windows event log export into a pandas DataFrame (one row per event)."""
     events = []
     current_event = {}
 
@@ -47,8 +48,8 @@ def visualize_event_data(df):
     st.subheader("Event Levels Distribution")
     level_counts = df['Level'].value_counts()
     fig, ax = plt.subplots()
-    level_counts.plot(kind='bar', color='skyblue', ax=ax)
-    ax.set_title("Distribution of Event Levels")
+    level_counts.plot(kind='bar', color='seagreen', edgecolor='black', ax=ax)
+    ax.set_title("Event Levels (feature branch)")
     ax.set_ylabel("Count")
     ax.set_xlabel("Level")
     st.pyplot(fig)
